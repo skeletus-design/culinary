@@ -9,6 +9,9 @@ from django.views.generic import (
 )
 from .models import Post
 from django.views.decorators.csrf import csrf_exempt
+from django.utils.decorators import method_decorator
+from django.views.decorators.csrf import csrf_protect
+
 
 def home(request):
     context = {
@@ -31,7 +34,7 @@ class PostDetailView(DetailView):
 class PostCreateView(LoginRequiredMixin, CreateView):
     model = Post
     fields = ['title', 'content']
-    @csrf_exempt
+    @method_decorator(csrf_exempt)
     def form_valid(self, form):
         form.instance.author = self.request.user
         return super().form_valid(form)
@@ -40,11 +43,11 @@ class PostCreateView(LoginRequiredMixin, CreateView):
 class PostUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = Post
     fields = ['title', 'content']
-    @csrf_exempt
+    @method_decorator(csrf_exempt)
     def form_valid(self, form):
         form.instance.author = self.request.user
         return super().form_valid(form)
-    @csrf_exempt
+    @method_decorator(csrf_exempt)
     def test_func(self):
         post = self.get_object()
         if self.request.user == post.author:
@@ -55,7 +58,7 @@ class PostUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
 class PostDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     model = Post
     success_url = '/'
-    @csrf_exempt
+    @method_decorator(csrf_exempt)
     def test_func(self):
         post = self.get_object()
         if self.request.user == post.author:
