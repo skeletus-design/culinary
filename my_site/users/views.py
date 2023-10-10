@@ -4,7 +4,7 @@ from django.contrib.auth.decorators import login_required
 from .forms import UserRegisterForm, UserUpdateForm, ProfileUpdateForm
 from django.views.decorators.csrf import csrf_exempt
 
-@csrf_exempt
+# @csrf_exempt
 def register(request):
     if request.method == 'POST':
         form = UserRegisterForm(request.POST)
@@ -19,7 +19,7 @@ def register(request):
 
 
 # @login_required
-@csrf_exempt
+# @csrf_exempt
 def profile(request):
     if request.method == 'POST':
         u_form = UserUpdateForm(request.POST, instance=request.user)

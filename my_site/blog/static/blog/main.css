@@ -34,22 +34,29 @@ ul {
 }
 
 .site-header .navbar-nav .nav-link.active {
-  font-weight: 500;
+  font-weight: 500px;
 }
+
+
 
 .content-section {
   background: #ffffff;
-  padding: 10px 20px;
+  padding: 1px 10px;
   border: 1px solid #dddddd;
   border-radius: 3px;
   margin-bottom: 20px;
   overflow:hidden;
-  word-break:break-all;
+  min-width: 70%;
+  max-width: 100%;
+
 }
 
 .article-title {
   color: #444444;
+  overflow:hidden;
+  word-break:break-all;
 }
+
 
 a.article-title:hover {
   color: #428bca;
@@ -58,6 +65,16 @@ a.article-title:hover {
 
 .article-content {
   white-space: pre-line;
+  overflow:hidden;
+  word-break:break-all;
+}
+
+.img-content {
+  height: 400px;
+  max-width: 100%;
+  margin-right: 16px;
+  overflow:hidden;
+  word-break:break-all;
 }
 
 .article-img {
@@ -100,6 +117,7 @@ footer {
  padding-top:25px;
  padding-bottom:25px;
  border-top:1px solid #ddd;
+ max-width: 100%;
 }
 
 footer p {
