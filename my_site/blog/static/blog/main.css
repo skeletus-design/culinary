@@ -66,15 +66,19 @@ a.article-title:hover {
 .article-content {
   white-space: pre-line;
   overflow:hidden;
-  word-break:break-all;
+  hyphens: auto;
+  -moz-hyphens: auto;
+  -webkit-hyphens: auto;
+  -ms-hyphens: auto;
+  hyphenate-limit-chars: 6 3 2;
+
 }
 
 .img-content {
-  height: 400px;
-  max-width: 100%;
+  /* height: 400px; */
+  max-width: 80%;
   margin-right: 16px;
   overflow:hidden;
-  word-break:break-all;
 }
 
 .article-img {
@@ -135,4 +139,20 @@ footer a{
 footer a:hover {
   color:#777;
   text-decoration: none;
+}
+
+.itemss {
+  display:inline-block;
+}
+
+.d1 {background: #A3D0C3;}
+.d1 input {
+  width: 100%;
+  height: 42px;
+  padding-left: 10px;
+  border: 2px solid #7BA7AB;
+  border-radius: 5px;
+  outline: none;
+  background: #F9F0DA;
+  color: #9E9C9C;
 }

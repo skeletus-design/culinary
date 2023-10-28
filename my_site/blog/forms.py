@@ -8,6 +8,11 @@ class UserRegisterForm(UserCreationForm):
         model = Post
         fields = ['title', 'content']
 
+
+class LikeForm(forms.ModelForm):
+    class Meta:
+        model = Post
+        fields = ['likes']
 # class ImageForm(forms.ModelForm):
 #     class Meta:
 #         model = Post

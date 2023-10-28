@@ -1,7 +1,8 @@
 ﻿{% load static %}
 <!DOCTYPE html>
-<html>
+<html lang='ru'>
 <head style= 'width: 100%'>
+  {% comment %} <link rel="icon" href="favicon.jpeg" > {% endcomment %}
 
     <!-- Обязательные мета-теги -->
     <meta charset="utf-8">
@@ -23,31 +24,46 @@
     <header class="site-header">
       <nav class="navbar navbar-expand-md navbar-dark bg-blue fixed-top">
         <div class="container">
-          <a class="navbar-brand mr-4" href="{% url 'blog-home' %}"><i class='bx bxs-rocket bx-tada-hover'></i> .recipes</a>
+          <a class="navbar-brand mr-4" href="{% url 'blog-home' %}"><i class='bx bx-tada-hover'></i> .recipes</a>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle" aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
           </button>
-          <div class="collapse navbar-collapse" id="navbarToggle">
-            <div class="navbar-nav mr-auto">
-              <a class="nav-item nav-link " href="{% url 'blog-home' %}">Главная</a>
-              <a class="nav-item nav-link" href="{% url 'blog-about' %}">О ресурсе</a>
-            </div>
-            <!-- Правая часть навигационной панели -->
-            <div class="navbar-nav">
-              {% if user.is_authenticated %}
-                <a class="nav-item nav-link" href="{% url 'post-create' %}">Новый рецепт</a>
-                <a class="nav-item nav-link" href="{% url 'profile' %}">Профиль</a>
-                <a class="nav-item nav-link" href="{% url 'logout' %}">Выход</a>
-              {% else %}
-                <a class="nav-item nav-link" href="{% url 'login' %}">Вход</a>
-                <a class="nav-item nav-link" href="{% url 'register' %}">Регистрация</a>
-              {% endif %}
+            <div class="collapse navbar-collapse" id="navbarToggle">
+              <form class="navbar-nav" method='GET'>
+                <div class="navbar-nav mr-auto">
+                  <a class="nav-item nav-link " href="{% url 'blog-home' %}">Главная</a>
+                  <a class="nav-item nav-link" href="{% url 'blog-about' %}">О ресурсе</a>
+              <!-- Правая часть навигационной панели -->
+                {% if user.is_authenticated %}
+                  <a class="nav-item nav-link" href="{% url 'post-create' %}">Новый рецепт</a>
+                  <a class="nav-item nav-link" href="{% url 'profile' %}">Профиль</a>
+                  <a class="nav-item nav-link" href="{% url 'logout' %}">Выход</a>
+                {% else %}
+                  <a class="nav-item nav-link" href="{% url 'login' %}">Вход</a>
+                  <a class="nav-item nav-link" href="{% url 'register' %}">Регистрация</a>
+                {% endif %}
+              </form>
+              </form>
             </div>
           </div>
         </div>
       </nav>
     </header>
     <main role="main" class="container">
+      {% comment %} Поиск {% endcomment %}
+      <form method='GET' action="{% url 'search_posts' %}">
+        <div class="grid row-gap-3 col-lg-8 d-flex align-items-center justify-content-between">
+          <div class="top-0 start-0 p-0 g-col-6 col-lg-8"><input style="height:40px width:60%" type="text" name='q' class="align-line form-control" placeholder="Поиск"></div>
+          <div class="p-2 g-col-6 col-lg-8"><input style="height:40px" class="btn btn-secondary" type='submit' value='Найти' class="itemss"></div>
+          </div>
+        </div>
+      </form> 
+       
+      {% comment %} <div class="grid row-gap-3 align-items-center justify-content-between">
+        <a href='{% url "like-filter" %}' class="btn btn-warning btn-sm mt-1 mb-1">Сначала популярные</a>
+        <a class="btn btn-warning btn-sm mt-1 mb-1">Сначала новые</a>
+      </div>   {% endcomment %}
+
       <div class="row">
         <div class="col-md-8">
           {% if messages %}
@@ -64,8 +80,8 @@
             <h3>Патчноут</h3>
             <p class='text-muted'>новости и обновления
               <ul class="list-group">
-                <li class="list-group-item list-group-item-light">Патч 1.1 Скоро</li>
-                <li class="list-group-item list-group-item-light">...</li>
+                <li class="list-group-item list-group-item-light"><a href='https://docs.google.com/document/d/1GEk9BZICknT7nzF1r_US2J29wvT1hceRaacN2ZdgizU/edit?usp=sharing'>Патч 1.1 </a></li>
+                <li class="list-group-item list-group-item-light"><a href='https://docs.google.com/document/d/1bb19E6TvMQmW38r-_6ozY7yI-ApLb-6RxEfxMeage5w/edit?usp=sharing'>Патч 1.2 </a></li>
                 <li class="list-group-item list-group-item-light">...</li>
                 <li class="list-group-item list-group-item-light">...</li>
               </ul>
